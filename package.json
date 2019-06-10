@@ -1,0 +1,23 @@
+{
+  "name": "@serialport/micro-radio-internet",
+  "version": "1.0.0",
+  "main": "lib/micro-radio-internet.js",
+  "scripts": {
+    "listen": "serialport-terminal -p COM9 -b 115200 --echo --localecho"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "serialport": "^7.1.5"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/serialport/node-serialport.git"
+  }
+}
