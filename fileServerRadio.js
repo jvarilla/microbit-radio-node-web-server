@@ -33,7 +33,9 @@ parser.on('data', (line) => {
     console.log(`> ${line}`);
     // When receive the GET# command set is looking forAFile to true
     if (line.trim() == "#GET#") {
-        console.log("Getting file")
+        console.log("LISTENING");
+        let msg = "\nLISTENING\n"
+        port.write(msg);
         listeningForFilePath = true;
         // Reset File Path
         filePath = "";
@@ -41,6 +43,8 @@ parser.on('data', (line) => {
     } else if (listeningForFilePath) {
         if (line.trim() == "#END#") { // If the End Comand is found stop listening for file path
             listeningForFilePath = false;
+            let msg = "\nSEARCHING\n"
+            port.write(msg);
             // Reset the file contents
             fileContents = "";
 
@@ -103,7 +107,10 @@ function lookForFileAndSendOverSerial(pathToFile) {
                 idx++;
             }
             // Send the #DONE# command over serial
-            port.write("#DONE#");
+            setTimeout(function() {
+                    port.write("\n#DONE#\n");
+                }, 500 * idx);
+            
             console.log("\n" + `#DONE#`+ "\n");
     
         })
